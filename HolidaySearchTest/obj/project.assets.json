@@ -3860,11 +3860,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Learning\\OnTheBeach\\OntheBeachTechTask\\HolidaySearchTest\\HolidaySearchTest.csproj",
+      "projectUniqueName": "D:\\Learning\\OnTheBeachTechTask\\OnTheBeach\\HolidaySearchTest\\HolidaySearchTest.csproj",
       "projectName": "HolidaySearchTest",
-      "projectPath": "D:\\Learning\\OnTheBeach\\OntheBeachTechTask\\HolidaySearchTest\\HolidaySearchTest.csproj",
+      "projectPath": "D:\\Learning\\OnTheBeachTechTask\\OnTheBeach\\HolidaySearchTest\\HolidaySearchTest.csproj",
       "packagesPath": "C:\\Users\\aditya\\.nuget\\packages\\",
-      "outputPath": "D:\\Learning\\OnTheBeach\\OntheBeachTechTask\\HolidaySearchTest\\obj\\",
+      "outputPath": "D:\\Learning\\OnTheBeachTechTask\\OnTheBeach\\HolidaySearchTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\aditya\\AppData\\Roaming\\NuGet\\NuGet.Config",

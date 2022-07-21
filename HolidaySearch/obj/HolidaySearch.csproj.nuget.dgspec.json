@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Learning\\OnTheBeach\\OntheBeachTechTask\\HolidaySearch\\HolidaySearch.csproj": {}
+    "D:\\Learning\\OnTheBeachTechTask\\OnTheBeach\\HolidaySearch\\HolidaySearch.csproj": {}
   },
   "projects": {
-    "D:\\Learning\\OnTheBeach\\OntheBeachTechTask\\HolidaySearch\\HolidaySearch.csproj": {
+    "D:\\Learning\\OnTheBeachTechTask\\OnTheBeach\\HolidaySearch\\HolidaySearch.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Learning\\OnTheBeach\\OntheBeachTechTask\\HolidaySearch\\HolidaySearch.csproj",
+        "projectUniqueName": "D:\\Learning\\OnTheBeachTechTask\\OnTheBeach\\HolidaySearch\\HolidaySearch.csproj",
         "projectName": "HolidaySearch",
-        "projectPath": "D:\\Learning\\OnTheBeach\\OntheBeachTechTask\\HolidaySearch\\HolidaySearch.csproj",
+        "projectPath": "D:\\Learning\\OnTheBeachTechTask\\OnTheBeach\\HolidaySearch\\HolidaySearch.csproj",
         "packagesPath": "C:\\Users\\aditya\\.nuget\\packages\\",
-        "outputPath": "D:\\Learning\\OnTheBeach\\OntheBeachTechTask\\HolidaySearch\\obj\\",
+        "outputPath": "D:\\Learning\\OnTheBeachTechTask\\OnTheBeach\\HolidaySearch\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\aditya\\AppData\\Roaming\\NuGet\\NuGet.Config",

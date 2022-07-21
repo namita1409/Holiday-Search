@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kACanCUfeIe8/XH7nxEbbzrkQCQds/CA8J7LMORFP78vns/HPyXUM9GC3Jht7X7RuohSqpnqFK3pV4jORrm60Q==",
+  "dgSpecHash": "PrEYi4NcKQ9fCYfJBSA+2qizDAerJy/UzXrseJuWM8NnxCqCKdIOXkmj5ofCzOSAUOkULHSfNouDikH3SIQGcA==",
   "success": true,
-  "projectFilePath": "D:\\Learning\\OnTheBeach\\OntheBeachTechTask\\HolidaySearchTest\\HolidaySearchTest.csproj",
+  "projectFilePath": "D:\\Learning\\OnTheBeachTechTask\\OnTheBeach\\HolidaySearchTest\\HolidaySearchTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aditya\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
     "C:\\Users\\aditya\\.nuget\\packages\\microsoft.codecoverage\\16.11.0\\microsoft.codecoverage.16.11.0.nupkg.sha512",
