@@ -1,0 +1,17 @@
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\obj\Debug\net6.0\HolidaySearch.csproj.AssemblyReference.cache
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\obj\Debug\net6.0\HolidaySearch.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\obj\Debug\net6.0\HolidaySearch.AssemblyInfoInputs.cache
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\obj\Debug\net6.0\HolidaySearch.AssemblyInfo.cs
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\obj\Debug\net6.0\HolidaySearch.csproj.CoreCompileInputs.cache
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\bin\Debug\net6.0\HolidaySearch.exe
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\bin\Debug\net6.0\HolidaySearch.deps.json
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\bin\Debug\net6.0\HolidaySearch.runtimeconfig.json
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\bin\Debug\net6.0\HolidaySearch.dll
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\bin\Debug\net6.0\HolidaySearch.pdb
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\obj\Debug\net6.0\HolidaySearch.dll
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\obj\Debug\net6.0\refint\HolidaySearch.dll
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\obj\Debug\net6.0\HolidaySearch.pdb
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\obj\Debug\net6.0\HolidaySearch.genruntimeconfig.cache
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\obj\Debug\net6.0\ref\HolidaySearch.dll
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\obj\Debug\net6.0\HolidaySearch.csproj.CopyComplete

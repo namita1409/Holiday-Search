@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "TnGoFsOpRnbt0iaumVzbi2aqd2NUPZtfKTPN2i3oaPguliPjO3m/ZJOO6lu0bSRYX4dLSnG3FO0ciNpk8ALgCQ==",
+  "dgSpecHash": "TJ8VVnN/n6De169+M88TYkdVjwJowQk3E5SAk2V2wH5k1GyIKbac5Gc2dlVzasaqYHfUmeh0h1nR2GSv1pulJw==",
   "success": true,
   "projectFilePath": "D:\\Learning\\OnTheBeachTechTask\\OnTheBeach\\HolidaySearch\\HolidaySearch.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\aditya\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
