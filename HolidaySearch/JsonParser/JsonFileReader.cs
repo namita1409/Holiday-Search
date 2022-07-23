@@ -1,16 +1,10 @@
 ﻿using HolidaySearch.Model;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-
 
 
 namespace HolidaySearch.JsonParser
 {
-    public class JsonFileReader
+    public class JsonFileReader : IJsonFileReader
     {
         public List<Hotel> HoTelJsonReader()
         {
@@ -26,12 +20,11 @@ namespace HolidaySearch.JsonParser
 
             return hotelList;
         }
-        public List<Flight> FlightJonReader()
+        public List<Flight> FlightJsonReader()
         {
             List<Flight> flightList = new List<Flight>();
             var options = new JsonSerializerOptions() { WriteIndented = true };
             options.Converters.Add(new CustomDateOnlyConverter("yyyy-MM-dd"));
-
 
             using (StreamReader r = new StreamReader("D:/Learning/OnTheBeachTechTask/OnTheBeach/HolidaySearch/Input/flight.json"))
             {

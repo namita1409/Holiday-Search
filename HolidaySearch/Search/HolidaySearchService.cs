@@ -3,46 +3,37 @@ using HolidaySearch.Model;
 
 namespace HolidaySearch.Search
 {
-    public class BookingSearchService
+    public class HolidaySearchService
     {
-
-        public IEnumerable<HolidayPackage> GetFlightHotelList(List<Flight> flights, List<Hotel> hotels, string departFrom, string travelTo, string date, int nightstoStay)
-        {
-            if (flights == null || hotels==null)
-                throw new ArgumentNullException("list is null ");           
-
-                DateOnly flightDate = DateOnly.Parse(date);
-                IEnumerable<Flight> flightSearchresults = GetFlightList(flights, departFrom, travelTo, flightDate);
-                IEnumerable<Hotel> hotelSearchResults = GetHotelList(hotels, travelTo, nightstoStay);
-                return holidayPackage(flightSearchresults, hotelSearchResults);
-            
-        }
-        public IEnumerable<HolidayPackage> GetFlightHotelListForAnyAirport(List<Flight> flights, List<Hotel> hotels, string travelTo, string date, int nightstoStay)
+        public IEnumerable<HolidayPackage> GetFlightHotelList(List<Flight> flights, List<Hotel> hotels, string departFrom, string travelTo, DateOnly date, int nightstoStay)
         {
             if (flights == null || hotels == null)
-                throw new ArgumentNullException("list is null ");
-
-            DateOnly flightDate = DateOnly.Parse(date);
-            IEnumerable<Flight> flightSearchresults = GetFlightListForAnyAirport(flights, travelTo, flightDate);
-
-            IEnumerable<Hotel> hotelSearchResults = GetHotelList(hotels, travelTo, nightstoStay);
-
-            // List<HolidayPackage> holidayPackages = compileHolidayPackage(flightSearchresults, hotelSearchResults);
-            return holidayPackage(flightSearchresults, hotelSearchResults); 
+                throw new ArgumentNullException("list is null please check your code");              
+                
+                IEnumerable<Flight> flightSearchresults = GetFlightList(flights, departFrom, travelTo, date);
+                IEnumerable<Hotel> hotelSearchResults = getHotelList(hotels, travelTo, nightstoStay);
+                
+            return holidayPackage(flightSearchresults, hotelSearchResults);            
         }
-        public IEnumerable<HolidayPackage> GetFlightHotelListForAnyLondonAirport(List<Flight> flights, List<Hotel> hotels, string travelTo, string date, int nightstoStay)
+        public IEnumerable<HolidayPackage> GetFlightsHotelsForAnyAirport(List<Flight> flights, List<Hotel> hotels, string travelTo, DateOnly date, int nightstoStay)
         {
-            if (flights == null || hotels == null)
-                throw new ArgumentNullException("list is null ");
+              if (flights == null || hotels == null)
+                    throw new ArgumentNullException("list is null please check your code ");
+               
+                IEnumerable<Flight> flightSearchresults = GetFlightListForAnyAirport(flights, travelTo, date);
+                IEnumerable<Hotel> hotelSearchResults = getHotelList(hotels, travelTo, nightstoStay);
 
-            DateOnly flightDate = DateOnly.Parse(date);
-            IEnumerable<Flight> flightSearchresults = GetFlightListForAnyLondonAirport(flights, travelTo, flightDate);
-
-            IEnumerable<Hotel> hotelSearchResults = GetHotelList(hotels, travelTo, nightstoStay);
-
-           // List<HolidayPackage> holidayPackages = compileHolidayPackage(flightSearchresults, hotelSearchResults);
-            return holidayPackage(flightSearchresults, hotelSearchResults); ;
-
+             return holidayPackage(flightSearchresults, hotelSearchResults); 
+        }
+        public IEnumerable<HolidayPackage> GetFlightsHotelsForAnyLondonAirport(List<Flight> flights, List<Hotel> hotels, string travelTo, DateOnly date, int nightstoStay)
+            {
+               if (flights == null || hotels == null)
+                    throw new ArgumentNullException("list is null please check your code ");
+              
+               IEnumerable<Flight> flightSearchresults = getFlightListForAnyLondonAirport(flights, travelTo, date);
+               IEnumerable<Hotel> hotelSearchResults = getHotelList(hotels, travelTo, nightstoStay);
+           
+            return holidayPackage(flightSearchresults, hotelSearchResults);
         }
         private static IEnumerable<Flight> GetFlightList(List<Flight> flights, string departFrom, string travelTo, DateOnly flightDate)
         {
@@ -62,7 +53,7 @@ namespace HolidaySearch.Search
                                                       select flight;
             return flightSearchresults;
         }
-        private static IEnumerable<Flight> GetFlightListForAnyLondonAirport(List<Flight> flights, string travelTo, DateOnly flightDate)
+        private static IEnumerable<Flight> getFlightListForAnyLondonAirport(List<Flight> flights, string travelTo, DateOnly flightDate)
         {
             string[] londonAirports = new string[] { "LCY", "LGW", "LHR", "LTN" };
             //  return flights.Where(f => f.from.Contains("L") && f.to == travelTo && f.departure_date.Equals(flightDate));
@@ -72,7 +63,7 @@ namespace HolidaySearch.Search
                                                       select flight;
             return flightSearchresults;
         }
-        private static IEnumerable<Hotel> GetHotelList(List<Hotel> hotels, string travelTo, int nightstoStay)
+        private static IEnumerable<Hotel> getHotelList(List<Hotel> hotels, string travelTo, int nightstoStay)
         {
 
             //    //getting  the hotel list based on nights
@@ -102,6 +93,5 @@ namespace HolidaySearch.Search
             }
             return holidayPackages;
         }
-
     }
 }

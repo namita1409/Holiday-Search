@@ -5,23 +5,26 @@ using HolidaySearch.Search;
 
 
 JsonFileReader jsonFileReader = new JsonFileReader();
-List<Hotel> hotels= jsonFileReader.HoTelJsonReader();
-List<Flight> flights = jsonFileReader.FlightJonReader();
+List<Hotel> hotels = jsonFileReader.HoTelJsonReader();
+List<Flight> flights = jsonFileReader.FlightJsonReader();
 
 
-BookingSearchService _BookingSearchService = new BookingSearchService();
+HolidaySearchService _HolidaySearchService = new HolidaySearchService();
 IEnumerable<HolidayPackage> holidayPackages;
 
-//////Test case 1
-holidayPackages = _BookingSearchService.GetFlightHotelList(flights, hotels, "MAN", "AGP", "2023 / 07 / 01", 7);
+////Test case 1
+DateOnly flightDate1 = DateOnly.Parse("2023/07/01");
+holidayPackages = _HolidaySearchService.GetFlightHotelList(flights, hotels, "MAN", "AGP", flightDate1, 7);
 Console.WriteLine("*****************************************");
 Console.WriteLine(holidayPackages.First().flight.toString());
 Console.WriteLine("#########################################");
 Console.WriteLine(holidayPackages.First().hotel.toString());
 Console.WriteLine("*****************************************");
+
 ////Test case 2
 Console.WriteLine("*****************************************");
-holidayPackages = _BookingSearchService.GetFlightHotelListForAnyLondonAirport(flights, hotels, "PMI", "2023/06/15", 10);
+DateOnly flightDate2 = DateOnly.Parse("2023/06/15");
+holidayPackages = _HolidaySearchService.GetFlightsHotelsForAnyLondonAirport(flights, hotels, "PMI", flightDate2, 10);
 Console.WriteLine(holidayPackages.First().flight.toString());
 Console.WriteLine("#########################################");
 Console.WriteLine(holidayPackages.First().hotel.toString());
@@ -29,7 +32,8 @@ Console.WriteLine("*****************************************");
 
 ////Test case 3
 Console.WriteLine("*****************************************");
-holidayPackages = _BookingSearchService.GetFlightHotelListForAnyAirport(flights, hotels, "LPA", "2022/11/10", 14);
+DateOnly flightDate3 = DateOnly.Parse("2022/11/10");
+holidayPackages = _HolidaySearchService.GetFlightsHotelsForAnyAirport(flights, hotels, "LPA", flightDate3, 14);
 Console.WriteLine(holidayPackages.First().flight.toString());
 Console.WriteLine("#########################################");
 Console.WriteLine(holidayPackages.First().hotel.toString());
