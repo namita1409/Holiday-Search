@@ -6,7 +6,7 @@ namespace HolidaySearch.JsonParser
 {
     public class JsonFileReader : IJsonFileReader
     {
-        public List<Hotel> HoTelJsonReader()
+        public List<Hotel> HotelJsonReader()
         {
             List<Hotel> hotelList = new List<Hotel>();
             var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);

@@ -5,6 +5,6 @@ namespace HolidaySearch.JsonParser
     public interface IJsonFileReader
     {
         List<Flight> FlightJsonReader();
-        List<Hotel> HoTelJsonReader();
+        List<Hotel> HotelJsonReader();
     }
 }

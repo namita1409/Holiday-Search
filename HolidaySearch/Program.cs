@@ -4,12 +4,12 @@ using HolidaySearch.Model;
 using HolidaySearch.Search;
 
 
-JsonFileReader jsonFileReader = new JsonFileReader();
-List<Hotel> hotels = jsonFileReader.HoTelJsonReader();
+IJsonFileReader jsonFileReader = new JsonFileReader();
+List<Hotel> hotels = jsonFileReader.HotelJsonReader();
 List<Flight> flights = jsonFileReader.FlightJsonReader();
 
 
-HolidaySearchService _HolidaySearchService = new HolidaySearchService();
+IHolidaySearchService _HolidaySearchService = new HolidaySearchService();
 IEnumerable<HolidayPackage> holidayPackages;
 
 ////Test case 1
