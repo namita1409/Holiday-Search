@@ -19,18 +19,21 @@ namespace HolidaySearch.Search
         }
         public IEnumerable<HolidayPackage> GetFlightHotelListForAnyAirport(List<Flight> flights, List<Hotel> hotels, string travelTo, string date, int nightstoStay)
         {
+            if (flights == null || hotels == null)
+                throw new ArgumentNullException("list is null ");
+
             DateOnly flightDate = DateOnly.Parse(date);
             IEnumerable<Flight> flightSearchresults = GetFlightListForAnyAirport(flights, travelTo, flightDate);
 
             IEnumerable<Hotel> hotelSearchResults = GetHotelList(hotels, travelTo, nightstoStay);
 
             // List<HolidayPackage> holidayPackages = compileHolidayPackage(flightSearchresults, hotelSearchResults);
-            return holidayPackage(flightSearchresults, hotelSearchResults); ;
-
-
+            return holidayPackage(flightSearchresults, hotelSearchResults); 
         }
-        public IEnumerable<HolidayPackage> GetFlightListForAnyLondonAirport(List<Flight> flights, List<Hotel> hotels, string travelTo, string date, int nightstoStay)
+        public IEnumerable<HolidayPackage> GetFlightHotelListForAnyLondonAirport(List<Flight> flights, List<Hotel> hotels, string travelTo, string date, int nightstoStay)
         {
+            if (flights == null || hotels == null)
+                throw new ArgumentNullException("list is null ");
 
             DateOnly flightDate = DateOnly.Parse(date);
             IEnumerable<Flight> flightSearchresults = GetFlightListForAnyLondonAirport(flights, travelTo, flightDate);
@@ -41,7 +44,6 @@ namespace HolidaySearch.Search
             return holidayPackage(flightSearchresults, hotelSearchResults); ;
 
         }
-
         private static IEnumerable<Flight> GetFlightList(List<Flight> flights, string departFrom, string travelTo, DateOnly flightDate)
         {
             //return flights.Where(f => f.from == departFrom && f.to == travelTo && f.departure_date.Equals(flightDate));
@@ -50,7 +52,6 @@ namespace HolidaySearch.Search
                                                       orderby flight.price
                                                       select flight;
             return flightSearchresults;
-
         }
         private static IEnumerable<Flight> GetFlightListForAnyAirport(List<Flight> flights, string travelTo, DateOnly flightDate)
         {

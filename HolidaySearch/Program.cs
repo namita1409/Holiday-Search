@@ -21,7 +21,7 @@ Console.WriteLine(holidayPackages.First().hotel.toString());
 Console.WriteLine("*****************************************");
 ////Test case 2
 Console.WriteLine("*****************************************");
-holidayPackages = _BookingSearchService.GetFlightListForAnyLondonAirport(flights, hotels, "PMI", "2023/06/15", 10);
+holidayPackages = _BookingSearchService.GetFlightHotelListForAnyLondonAirport(flights, hotels, "PMI", "2023/06/15", 10);
 Console.WriteLine(holidayPackages.First().flight.toString());
 Console.WriteLine("#########################################");
 Console.WriteLine(holidayPackages.First().hotel.toString());
