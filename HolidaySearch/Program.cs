@@ -4,63 +4,35 @@ using HolidaySearch.Model;
 using HolidaySearch.Search;
 
 
-JsonFileReader f = new JsonFileReader();
-List<Hotel> hotels= f.HoTelJsonReader();
-List<Flight> flights = f.FlightJonReader();
-
-BookingSearchService _Search = new BookingSearchService();
-
-IEnumerable<Flight> flightList = _Search.GetFlightList(flights, "MAN", "AGP", "2023/07/01");
-IEnumerable<Hotel> hotelList = _Search.GetHotelList(hotels,"AGP",7);
-//Console.WriteLine(hotelList.ToList().Count);
-
-foreach (Flight flight in flightList)
-{
-    Console.WriteLine(flight.toString());
-}
+JsonFileReader jsonFileReader = new JsonFileReader();
+List<Hotel> hotels= jsonFileReader.HoTelJsonReader();
+List<Flight> flights = jsonFileReader.FlightJonReader();
 
 
-Console.WriteLine(hotelList.First().toString());
+BookingSearchService _BookingSearchService = new BookingSearchService();
+IEnumerable<HolidayPackage> holidayPackages;
 
+//////Test case 1
+holidayPackages = _BookingSearchService.GetFlightHotelList(flights, hotels, "MAN", "AGP", "2023 / 07 / 01", 7);
+Console.WriteLine("*****************************************");
+Console.WriteLine(holidayPackages.First().flight.toString());
+Console.WriteLine("#########################################");
+Console.WriteLine(holidayPackages.First().hotel.toString());
+Console.WriteLine("*****************************************");
+////Test case 2
+Console.WriteLine("*****************************************");
+holidayPackages = _BookingSearchService.GetFlightListForAnyLondonAirport(flights, hotels, "PMI", "2023/06/15", 10);
+Console.WriteLine(holidayPackages.First().flight.toString());
+Console.WriteLine("#########################################");
+Console.WriteLine(holidayPackages.First().hotel.toString());
+Console.WriteLine("*****************************************");
 
+////Test case 3
+Console.WriteLine("*****************************************");
+holidayPackages = _BookingSearchService.GetFlightHotelListForAnyAirport(flights, hotels, "LPA", "2022/11/10", 14);
+Console.WriteLine(holidayPackages.First().flight.toString());
+Console.WriteLine("#########################################");
+Console.WriteLine(holidayPackages.First().hotel.toString());
+Console.WriteLine("*****************************************");
 
-
-
-
-/*Console.WriteLine($" count hotel {hotels.Count()}");
-Console.WriteLine($" count flight {flights.Count()}");
-
-DateOnly flightDate= DateOnly.Parse("2023/07/01");
-string fromAirport = "MAN";
-string toAirport = "AGP";
-int nightsStay = 7;
-
-//Query for flights
-IEnumerable<Flight> resultAirline = flights.Where(f => f.from==fromAirport && f.to==toAirport&&f.departure_date.Equals(flightDate));
-
-foreach (Flight flight in resultAirline)
-{
-    Console.WriteLine(flight.toString());
-}
-
-//Query for Hotels
-
-IEnumerable<Hotel> resultHotel = hotels.Where(h =>
-{
-    List<String> localAirport = h.local_airports;
-    foreach (String airport in localAirport)
-    {
-        if (airport.Equals(toAirport) && h.nights == nightsStay)
-            return true;
-    }
-    return false;
-}).OrderBy(h => h.price_per_night);
-foreach (Hotel hotel in resultHotel)
-{
-    Console.WriteLine(hotel.toString());
-}
-
-Hotel hotelfound = resultHotel.First();
-    Console.WriteLine(hotelfound.toString());
-*/
 
