@@ -69,6 +69,38 @@ namespace HolidaySearchTest
             holidayPackages.FirstOrDefault().hotel.id.Should().Be(expectedHotelId);
         }
         [Test]
+        public void GetFlightHotelList_Should_Return_Null_For_Invalid_FlightAirportFrom()
+        {
+            //arrange
+            List<Hotel> hotels = jsonFileReader.HotelJsonReader();
+            List<Flight> flights = jsonFileReader.FlightJsonReader();
+
+            DateOnly flightDate = DateOnly.Parse("2023/07/01");
+
+            //act
+            IEnumerable<HolidayPackage> holidayPackages = holidaySearchService.GetFlightHotelList(
+                                                                           flights, hotels, "AAP",
+                                                                            "AGP", flightDate, 7);
+            //assert
+            holidayPackages.Count().Should().Be(0);
+        }
+        [Test]
+        public void GetFlightHotelList_Should_Return_Null_For_Invalid_FlightAirportTo()
+        {
+            //arrange
+            List<Hotel> hotels = jsonFileReader.HotelJsonReader();
+            List<Flight> flights = jsonFileReader.FlightJsonReader();
+
+            DateOnly flightDate = DateOnly.Parse("2023/07/01");
+
+            //act
+            IEnumerable<HolidayPackage> holidayPackages = holidaySearchService.GetFlightHotelList(
+                                                                           flights, hotels, "MAN",
+                                                                            "AAP", flightDate, 7);
+            //assert
+            holidayPackages.Count().Should().Be(0);
+        }
+        [Test]
         public void GetFlightsHotelsForAnyAirport_Should_Throw_Exception_When_Flight_Is_Null()
         {
             //arrange
@@ -96,7 +128,7 @@ namespace HolidaySearchTest
         }
 
         [Test]
-        public void GetFlightsHotelsAnyAirportFor_Should_Return_Correct_Flight_And_Hotel_Id()
+        public void GetFlightsHotelsForAnyAirport_Should_Return_Correct_Flight_And_Hotel_Id()
         {
             //arrange
             List<Hotel> hotels = jsonFileReader.HotelJsonReader();
@@ -114,6 +146,23 @@ namespace HolidaySearchTest
             holidayPackages.FirstOrDefault().hotel.id.Should().Be(expectedHotelId);
         }
         [Test]
+        public void GetFlightsHotelsForAnyAirport_Should_Return_Null_For_Invalid_FlightAirportTo()
+        {
+            //arrange
+            List<Hotel> hotels = jsonFileReader.HotelJsonReader();
+            List<Flight> flights = jsonFileReader.FlightJsonReader();
+
+            DateOnly flightDate = DateOnly.Parse("2022/11/10");
+
+            //act
+            IEnumerable<HolidayPackage> holidayPackages = holidaySearchService.GetFlightsHotelsForAnyAirport(
+                                                                                        flights, hotels, "AAA",
+                                                                                        flightDate, 14);
+            //assert
+            holidayPackages.Count().Should().Be(0);
+        }        
+
+        [Test]
         public void GetFlightsHotelsForAnyLondonAirport_Should_Throw_Exception_When_Flight_Is_Null()
         {
             //arrange
@@ -123,9 +172,8 @@ namespace HolidaySearchTest
 
             //assert
             Assert.Throws<ArgumentNullException>(() => holidaySearchService.GetFlightsHotelsForAnyLondonAirport(
-                                                                                    flights, hotels,
-                                                                                    "PMI", flightDate, 10));
-        }
+                                                                                                flights, hotels,
+                                                                                                    "PMI", flightDate, 10));        }
         [Test]
         public void GetFlightsHotelsForAnyLondonAirport_Should_Throw_Exception_When_Hotel_Is_Null()
         {
@@ -150,13 +198,30 @@ namespace HolidaySearchTest
             int expectedHotelId = 5;
 
             //act
-            IEnumerable<HolidayPackage> holidayPackages = holidaySearchService.GetFlightsHotelsForAnyAirport(
+            IEnumerable<HolidayPackage> holidayPackages = holidaySearchService.GetFlightsHotelsForAnyLondonAirport(
                                                                                 flights, hotels,
                                                                                 "PMI", flightDate, 10);
             //assert
             holidayPackages.FirstOrDefault().flight.id.Should().Be(expectedFlightId);
             holidayPackages.FirstOrDefault().hotel.id.Should().Be(expectedHotelId);
         }
+        [Test]
+        public void GetFlightsHotelsForAnyLondonAirport_Should_Return_Null_For_Invalid_FlightAirportTo()
+        {
+            //arrange
+            List<Hotel> hotels = jsonFileReader.HotelJsonReader();
+            List<Flight> flights = jsonFileReader.FlightJsonReader();
+
+            DateOnly flightDate = DateOnly.Parse("2023/06/15");
+
+            //act
+            IEnumerable<HolidayPackage> holidayPackages = holidaySearchService.GetFlightsHotelsForAnyLondonAirport(
+                                                                           flights, hotels,
+                                                                            "AAA", flightDate, 10);
+            //assert
+            holidayPackages.Count().Should().Be(0);
+        }
+        
     }
 }
 

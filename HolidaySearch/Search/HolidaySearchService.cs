@@ -9,7 +9,7 @@ namespace HolidaySearch.Search
         {
             if (flights == null || hotels == null)
                 throw new ArgumentNullException("list is null please check your code");
-
+           
             IEnumerable<Flight> flightSearchresults = GetFlightList(flights, departFrom, travelTo, date);
             IEnumerable<Hotel> hotelSearchResults = getHotelList(hotels, travelTo, nightstoStay);
 
