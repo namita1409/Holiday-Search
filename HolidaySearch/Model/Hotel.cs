@@ -12,7 +12,7 @@ namespace HolidaySearch.Model
         public int id { get; set; }
         public string name { get; set; }
         public DateOnly arrival_date { get; set; }
-        public int price_per_night { get; set; }         
+        public long price_per_night { get; set; }         
         public List<string> local_airports { get; set; }
 
         public int nights { get; set; }

@@ -88,6 +88,7 @@ namespace HolidaySearch.Search
                     HolidayPackage holidayPackage = new HolidayPackage();
                     holidayPackage.flight = flight;
                     holidayPackage.hotel = hotel;
+                    holidayPackage.totalPrice = flight.price+hotel.price_per_night;
                     holidayPackages.Add(holidayPackage);
                 }
             }
