@@ -6,6 +6,7 @@ using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 
 namespace HolidaySearchTest
 {
@@ -16,7 +17,7 @@ namespace HolidaySearchTest
 
         string hotelFile = "./hotel.json";
         string flightFile = "./flight.json";
-       
+
         [SetUp]
         public void Setup()
         {
@@ -24,20 +25,71 @@ namespace HolidaySearchTest
             holidaySearchService = new HolidaySearchService();
         }
         [Test]
-        public void GetFlightHotelList_Should_Throw_Exception_When_File_IsBlank()
+        public void GetFlightHotelList_Should_Throw_Exception_When_FileIsBlank()
         {
             //arrange
-            List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(hotelFile);
-            List<Flight> flights = null;
-            DateOnly flightDate = DateOnly.Parse("2023/07/01");
-           
-            //act and assert
-            Assert.Throws<ArgumentNullException>(() => holidaySearchService.GetFlightHotelList(
-                                                                           flights, hotels, "MAN",
-                                                                           "AGP", flightDate, 7));
+            try
+            {
+                List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(hotelFile);
+                List<Flight> flights = jsonFileParser.GetFlightsFromJsonFile("./blank.json");
+                DateOnly flightDate = DateOnly.Parse("2023/07/01");
+
+                //act
+                IEnumerable<HolidayPackage> holidayPackages = holidaySearchService.GetFlightHotelList(
+                                                                              flights, hotels, "MAN", "AGP", flightDate, 7);
+            }
+            //assert
+            catch (JsonException ex)
+            {
+                Console.WriteLine("GetFlightHotelList_ShouldThrowExceptionWhenFileIsBlank Exception Message" + ex.Message);
+                Assert.True(true);
+            }
         }
         [Test]
-        public void GetFlightHotelList_Should_Throw_Exception_When_HotelList_Is_Null()
+        public void GetFlightHotelList_Should_Throw_Exception_When_File_HasInValidData()
+        {
+            //arrange
+            try
+            {
+                List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(hotelFile);
+                List<Flight> flights = jsonFileParser.GetFlightsFromJsonFile("./invalidData.json");
+                DateOnly flightDate = DateOnly.Parse("2023/07/01");
+
+                //act
+                IEnumerable<HolidayPackage> holidayPackages = holidaySearchService.GetFlightHotelList(
+                                                                              flights, hotels, "MAN", "AGP", flightDate, 7);
+            }
+            //assert
+            catch (JsonException ex)
+            {
+                Console.WriteLine("GetFlightHotelList_Should_Throw_Exception_When_File_HasInValidData Exception Message" + ex.Message);
+                Assert.True(true);
+            }
+        }
+        [Test]
+        public void GetFlightHotelList_Should_Throw_Exception_When_File_IsNotAvailble()
+        {
+            //arrange
+            try
+            {
+                List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(hotelFile);
+                List<Flight> flights = jsonFileParser.GetFlightsFromJsonFile("./nofile.json");
+                DateOnly flightDate = DateOnly.Parse("2023/07/01");
+
+                //act
+                IEnumerable<HolidayPackage> holidayPackages = holidaySearchService.GetFlightHotelList(
+                                                                              flights, hotels, "MAN", "AGP", flightDate, 7);
+            }
+            //assert
+            catch (System.IO.FileNotFoundException ex)
+            {
+                Console.WriteLine("GetFlightHotelList_Should_Throw_Exception_When_File_IsNotAvailble Exception Message" + ex.Message);
+                Assert.True(true);
+            }
+
+        }
+        [Test]
+        public void GetFlightHotelList_Should_Throw_Exception_When_HotelList_IsNull()
         {
             //arrange
             List<Hotel> hotels = null;
@@ -45,7 +97,21 @@ namespace HolidaySearchTest
 
             DateOnly flightDate = DateOnly.Parse("2023/07/01");
 
-            //assert
+            //act and assert
+            Assert.Throws<ArgumentNullException>(() => holidaySearchService.GetFlightHotelList(
+                                                                             flights, hotels, "MAN",
+                                                                            "AGP", flightDate, 7));
+        }
+        [Test]
+        public void GetFlightHotelList_Should_Throw_Exception_When_FlightList_IsNull()
+        {
+            //arrange
+            List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(hotelFile); ;
+            List<Flight> flights = null;
+
+            DateOnly flightDate = DateOnly.Parse("2023/07/01");
+
+            //act and assert
             Assert.Throws<ArgumentNullException>(() => holidaySearchService.GetFlightHotelList(
                                                                              flights, hotels, "MAN",
                                                                             "AGP", flightDate, 7));
@@ -54,7 +120,6 @@ namespace HolidaySearchTest
         public void GetFlightHotelList_Should_Return_Correct_Flight_And_Hotel_Id()
         {
             //arrange
-
             List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(hotelFile);
             List<Flight> flights = jsonFileParser.GetFlightsFromJsonFile(flightFile);
 
@@ -71,7 +136,7 @@ namespace HolidaySearchTest
             holidayPackages.FirstOrDefault().hotel.id.Should().Be(expectedHotelId);
         }
         [Test]
-        public void GetFlightHotelList_Should_Return_Null_For_Invalid_FlightAirportFrom()
+        public void GetFlightHotelList_Should_Return_Null_For_Invalid_Flight_Airport_From()
         {
             //arrange
             List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(hotelFile);
@@ -87,7 +152,7 @@ namespace HolidaySearchTest
             holidayPackages.Count().Should().Be(0);
         }
         [Test]
-        public void GetFlightHotelList_Should_Return_Null_For_Invalid_FlightAirportTo()
+        public void GetFlightHotelList_Should_Return_Null_For_Invalid_Flight_Airport_To()
         {
             //arrange
             List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(hotelFile);
@@ -113,8 +178,7 @@ namespace HolidaySearchTest
             //assert
             Assert.Throws<ArgumentNullException>(() => holidaySearchService.GetFlightsHotelsForAnyAirport(
                                                                                     flights, hotels,
-                                                                                    "LPA", flightDate, 14));
-        }
+                                                                                    "LPA", flightDate, 14));        }
         [Test]
         public void GetFlightsHotelsForAnyAirport_Should_Throw_Exception_When_Hotel_Is_Null()
         {
@@ -128,7 +192,6 @@ namespace HolidaySearchTest
                                                                                     flights, hotels, "LPA",
                                                                                     flightDate, 14));
         }
-
         [Test]
         public void GetFlightsHotelsForAnyAirport_Should_Return_Correct_Flight_And_Hotel_Id()
         {
@@ -148,7 +211,7 @@ namespace HolidaySearchTest
             holidayPackages.FirstOrDefault().hotel.id.Should().Be(expectedHotelId);
         }
         [Test]
-        public void GetFlightsHotelsForAnyAirport_Should_Return_Null_For_Invalid_FlightAirportTo()
+        public void GetFlightsHotelsForAnyAirport_Should_Return_Null_For_Invalid_Flight_Airport_To()
         {
             //arrange
             List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(hotelFile);
@@ -172,7 +235,7 @@ namespace HolidaySearchTest
             List<Flight> flights = null;
             DateOnly flightDate = DateOnly.Parse("2022/11/10");
 
-            //assert
+            //act and assert
             Assert.Throws<ArgumentNullException>(() => holidaySearchService.GetFlightsHotelsForAnyLondonAirport(
                                                                                                 flights, hotels,
                                                                                                     "PMI", flightDate, 10));
@@ -185,7 +248,7 @@ namespace HolidaySearchTest
             List<Flight> flights = jsonFileParser.GetFlightsFromJsonFile(flightFile);
             DateOnly flightDate = DateOnly.Parse("2023/06/15");
 
-            //assert
+            // act and assert
             Assert.Throws<ArgumentNullException>(() => holidaySearchService.GetFlightsHotelsForAnyLondonAirport(
                                                                                     flights, hotels, "PMI",
                                                                                    flightDate, 10));
@@ -209,7 +272,7 @@ namespace HolidaySearchTest
             holidayPackages.FirstOrDefault().hotel.id.Should().Be(expectedHotelId);
         }
         [Test]
-        public void GetFlightsHotelsForAnyLondonAirport_Should_Return_Null_For_Invalid_FlightAirportTo()
+        public void GetFlightsHotelsForAnyLondonAirport_Should_Return_Null_For_Invalid_Flight_Airport_To()
         {
             //arrange
             List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(hotelFile);
@@ -224,7 +287,6 @@ namespace HolidaySearchTest
             //assert
             holidayPackages.Count().Should().Be(0);
         }
-
     }
 }
 

@@ -37,7 +37,9 @@ namespace HolidaySearch.Search
         }
         private static IEnumerable<Flight> GetFlightList(List<Flight> flights, string departFrom, string travelTo, DateOnly flightDate)
         {
+            //this comment section highlight other way to query using lambda
             //return flights.Where(f => f.from == departFrom && f.to == travelTo && f.departure_date.Equals(flightDate));
+           
             IEnumerable<Flight> flightSearchresults = from flight in flights
                                                       where flight.@from == departFrom && flight.to == travelTo && flight.departure_date.Equals(flightDate)
                                                       orderby flight.price
@@ -45,8 +47,8 @@ namespace HolidaySearch.Search
             return flightSearchresults;
         }
         private static IEnumerable<Flight> GetFlightListForAnyAirport(List<Flight> flights, string travelTo, DateOnly flightDate)
-        {
-            //return flights.Where(f => f.to == travelTo && f.departure_date.Equals(flightDate));
+        {    
+            //getting flight list based on destination airport
             IEnumerable<Flight> flightSearchresults = from flight in flights
                                                       where flight.to == travelTo && flight.departure_date.Equals(flightDate)
                                                       orderby flight.price
@@ -55,7 +57,8 @@ namespace HolidaySearch.Search
         }
         private static IEnumerable<Flight> getFlightListForAnyLondonAirport(List<Flight> flights, string travelTo, DateOnly flightDate)
         {
-            string[] londonAirports = new string[] { "LCY", "LGW", "LHR", "LTN" };            
+            string[] londonAirports = new string[] { "LCY", "LGW", "LHR", "LTN" }; 
+            //getting list of flight from Any London Airport
             IEnumerable<Flight> flightSearchresults = from flight in flights
                                                       where londonAirports.Contains(flight.@from) && flight.to == travelTo && flight.departure_date.Equals(flightDate)
                                                       orderby flight.price
@@ -65,7 +68,7 @@ namespace HolidaySearch.Search
         private static IEnumerable<Hotel> getHotelList(List<Hotel> hotels, string travelTo, int nightstoStay)
         {     
        
-           //getting  the hotel list based on nights
+           //getting the hotel list based on nights
            IEnumerable<Hotel> hotelSearchResults = from hotel in hotels
                                                     where hotel.nights == nightstoStay && hotel.local_airports.Contains(travelTo)
                                                     orderby hotel.price_per_night
