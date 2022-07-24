@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace HolidaySearchTest
 {
-    public class JSonFileReaderTest
+    public class JSonFileParserTest
     {
         private IJsonFileParser jsonFileReader;
 

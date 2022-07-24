@@ -5,9 +5,7 @@ namespace HolidaySearch.Model
     {
         public Hotel hotel { get; set; }
         public Flight flight { get; set; }
-
         public long totalPrice { get; set; }
-
 
     }
 }

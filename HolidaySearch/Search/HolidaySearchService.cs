@@ -13,7 +13,7 @@ namespace HolidaySearch.Search
             IEnumerable<Flight> flightSearchresults = GetFlightList(flights, departFrom, travelTo, date);
             IEnumerable<Hotel> hotelSearchResults = getHotelList(hotels, travelTo, nightstoStay);
 
-            return holidayPackage(flightSearchresults, hotelSearchResults);
+            return getHolidayPackage(flightSearchresults, hotelSearchResults);
         }
         public IEnumerable<HolidayPackage> GetFlightsHotelsForAnyAirport(List<Flight> flights, List<Hotel> hotels, string travelTo, DateOnly date, int nightstoStay)
         {
@@ -23,7 +23,7 @@ namespace HolidaySearch.Search
             IEnumerable<Flight> flightSearchresults = GetFlightListForAnyAirport(flights, travelTo, date);
             IEnumerable<Hotel> hotelSearchResults = getHotelList(hotels, travelTo, nightstoStay);
 
-            return holidayPackage(flightSearchresults, hotelSearchResults);
+            return getHolidayPackage(flightSearchresults, hotelSearchResults);
         }
         public IEnumerable<HolidayPackage> GetFlightsHotelsForAnyLondonAirport(List<Flight> flights, List<Hotel> hotels, string travelTo, DateOnly date, int nightstoStay)
         {
@@ -33,7 +33,7 @@ namespace HolidaySearch.Search
             IEnumerable<Flight> flightSearchresults = getFlightListForAnyLondonAirport(flights, travelTo, date);
             IEnumerable<Hotel> hotelSearchResults = getHotelList(hotels, travelTo, nightstoStay);
 
-            return holidayPackage(flightSearchresults, hotelSearchResults);
+            return getHolidayPackage(flightSearchresults, hotelSearchResults);
         }
         private static IEnumerable<Flight> GetFlightList(List<Flight> flights, string departFrom, string travelTo, DateOnly flightDate)
         {
@@ -77,7 +77,7 @@ namespace HolidaySearch.Search
                                                     select hotel;
             return hotelSearchResults;
         }
-        private static List<HolidayPackage> holidayPackage(IEnumerable<Flight> flightSearchresults, IEnumerable<Hotel> hotelSearchResults)
+        private static List<HolidayPackage> getHolidayPackage(IEnumerable<Flight> flightSearchresults, IEnumerable<Hotel> hotelSearchResults)
         {
             List<HolidayPackage> holidayPackages = new List<HolidayPackage>();
 

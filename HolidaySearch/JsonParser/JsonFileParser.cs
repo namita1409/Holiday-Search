@@ -7,15 +7,12 @@ namespace HolidaySearch.JsonParser
     public class JsonFileParser : IJsonFileParser
     {
         public List<Hotel> GetHotelsFromJsonFile(string fileName)
-        {
-            List<Hotel> hotelList;
-         
+        {            
             using (StreamReader r = new StreamReader(fileName))
             {
                 string jsonString = r.ReadToEnd();
-                hotelList = ParseHotelJsonString(jsonString);
+                return ParseHotelJsonString(jsonString);
             }
-            return hotelList;
         }
         public List<Hotel> ParseHotelJsonString(string jsonString)
         {
@@ -25,14 +22,11 @@ namespace HolidaySearch.JsonParser
         }
         public List<Flight> GetFlightsFromJsonFile(string fileName)
         {
-            List<Flight> flightList;       
-
             using (StreamReader r = new StreamReader(fileName))
             {
                 string jsonString = r.ReadToEnd();
-                flightList = ParseFlightJsonString(jsonString);
-                return flightList;
-            }
+                return ParseFlightJsonString(jsonString);
+            }            
         }
         public  List<Flight> ParseFlightJsonString(string jsonString)
         {
