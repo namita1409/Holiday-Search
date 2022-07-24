@@ -1,7 +1,6 @@
 ﻿using HolidaySearch.Model;
 using System.Text.Json;
 
-
 namespace HolidaySearch.JsonParser
 {
     public class JsonFileParser : IJsonFileParser
@@ -23,13 +22,13 @@ namespace HolidaySearch.JsonParser
         public List<Flight> GetFlightsFromJsonFile(string fileName)
         {
             using (StreamReader r = new StreamReader(fileName))
-            {
+            {                
                 string jsonString = r.ReadToEnd();
-                return ParseFlightJsonString(jsonString);
+                return ParseFlightJsonString(jsonString);                
             }            
         }
         public  List<Flight> ParseFlightJsonString(string jsonString)
-        {
+        {           
             var options = new JsonSerializerOptions() { WriteIndented = true };
             options.Converters.Add(new CustomDateOnlyConverter("yyyy-MM-dd"));
             return JsonSerializer.Deserialize<List<Flight>>(jsonString, options);

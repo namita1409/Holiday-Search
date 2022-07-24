@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace HolidaySearchTest
 {
-    public class HolidaySearchServiceTestUsingMock
+    public class HolidaySearchServiceTestWithMockData
     {
         private IHolidaySearchService holidaySearchService;
 

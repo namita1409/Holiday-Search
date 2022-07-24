@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace HolidaySearchTest
 {
-    public class JSonFileParserTest
+    public class JsonFileParserTest
     {
         private IJsonFileParser jsonFileReader;
 
@@ -21,7 +21,7 @@ namespace HolidaySearchTest
         [Test]
         public void ParseHotelJsonString_Should_Return_HotelList()
         {
-            List<Hotel> hotels = GetFakeHotel();
+            List<Hotel> hotels = GetMockHotel();
 
             var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
             options.Converters.Add(new CustomDateOnlyConverter("yyyy-MM-dd"));
@@ -31,10 +31,11 @@ namespace HolidaySearchTest
 
             result.First().Should().BeEquivalentTo(hotels.First());
         }
+       
         [Test]
         public void ParseFlightJsonString_Should_Return_FlightList()
         {
-            List<Flight> flights = GetFakeFlight();
+            List<Flight> flights = GetMockFlight();
 
             var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
             options.Converters.Add(new CustomDateOnlyConverter("yyyy-MM-dd"));
@@ -44,7 +45,8 @@ namespace HolidaySearchTest
 
             result.First().Should().BeEquivalentTo(flights.First());
         }
-        private List<Flight> GetFakeFlight()
+        
+        private List<Flight> GetMockFlight()
         {
             return new List<Flight>
             {
@@ -59,7 +61,7 @@ namespace HolidaySearchTest
                 }
             };
         }
-        private List<Hotel> GetFakeHotel()
+        private List<Hotel> GetMockHotel()
         {
             return new List<Hotel>
             {

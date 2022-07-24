@@ -8,7 +8,7 @@ namespace HolidaySearch.Search
         public IEnumerable<HolidayPackage> GetFlightHotelList(List<Flight> flights, List<Hotel> hotels, string departFrom, string travelTo, DateOnly date, int nightstoStay)
         {
             if (flights == null || hotels == null)
-                throw new ArgumentNullException("list is null please check your code");
+               throw new ArgumentNullException("list is null please check your code");
            
             IEnumerable<Flight> flightSearchresults = GetFlightList(flights, departFrom, travelTo, date);
             IEnumerable<Hotel> hotelSearchResults = getHotelList(hotels, travelTo, nightstoStay);
@@ -55,8 +55,7 @@ namespace HolidaySearch.Search
         }
         private static IEnumerable<Flight> getFlightListForAnyLondonAirport(List<Flight> flights, string travelTo, DateOnly flightDate)
         {
-            string[] londonAirports = new string[] { "LCY", "LGW", "LHR", "LTN" };
-            //  return flights.Where(f => f.from.Contains("L") && f.to == travelTo && f.departure_date.Equals(flightDate));
+            string[] londonAirports = new string[] { "LCY", "LGW", "LHR", "LTN" };            
             IEnumerable<Flight> flightSearchresults = from flight in flights
                                                       where londonAirports.Contains(flight.@from) && flight.to == travelTo && flight.departure_date.Equals(flightDate)
                                                       orderby flight.price
@@ -64,14 +63,10 @@ namespace HolidaySearch.Search
             return flightSearchresults;
         }
         private static IEnumerable<Hotel> getHotelList(List<Hotel> hotels, string travelTo, int nightstoStay)
-        {
-
-            //    //getting  the hotel list based on nights
-            //IEnumerable<Hotel> hotelSearchResults = hotels.Where(h => h.nights == nightstoStay && h.local_airports.Contains(travelTo))
-            //                                                  .OrderBy(h => h.price_per_night);
-
-            //getting  the hotel list based on nights
-            IEnumerable<Hotel> hotelSearchResults = from hotel in hotels
+        {     
+       
+           //getting  the hotel list based on nights
+           IEnumerable<Hotel> hotelSearchResults = from hotel in hotels
                                                     where hotel.nights == nightstoStay && hotel.local_airports.Contains(travelTo)
                                                     orderby hotel.price_per_night
                                                     select hotel;
