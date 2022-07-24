@@ -15,8 +15,8 @@ namespace HolidaySearchTest
         private IHolidaySearchService holidaySearchService;
         private IJsonFileParser jsonFileParser;
 
-        string hotelFileName = @"D:/Learning/OnTheBeachTechTask/OnTheBeach/HolidaySearch/Input/hotel.json";
-        string flightFileName = @"D:/Learning/OnTheBeachTechTask/OnTheBeach/HolidaySearch/Input/flight.json";
+        string hotelFileName = "./hotel.json";
+        string flightFileName = "./flight.json";
 
         [SetUp]
         public void Setup()

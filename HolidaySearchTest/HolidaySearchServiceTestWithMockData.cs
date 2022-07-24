@@ -6,10 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace HolidaySearchTest
 {
-    public class SearchSeviceTest
+    public class HolidaySearchServiceTestUsingMock
     {
         private IHolidaySearchService holidaySearchService;
 
@@ -22,8 +21,8 @@ namespace HolidaySearchTest
         public void GetFlightHotelList_Should_Return_Correct_Flight_And_Hotel_Id()
         {
             //arrange
-            List<Hotel> hotels = GetFakeHotel();
-            List<Flight> flights = GetFakeFlight();
+            List<Hotel> hotels = GetMockHotel();
+            List<Flight> flights = GetMockFlight();
             DateOnly flightDate = DateOnly.Parse("2023/07/01");
             int expectedFlightId = 2;
             int expectedHotelId = 9;
@@ -40,7 +39,7 @@ namespace HolidaySearchTest
         public void GetFlightHotelList_Should_Throw_Exception_When_FlightList_Is_Null()
         {
             //arrange
-            List<Hotel> hotels = GetFakeHotel();
+            List<Hotel> hotels = GetMockHotel();
             List<Flight> flights = null;
             DateOnly flightDate = DateOnly.Parse("2023/07/01");
 
@@ -54,7 +53,7 @@ namespace HolidaySearchTest
         {
             //arrange
             List<Hotel> hotels = null;
-            List<Flight> flights = GetFakeFlight();
+            List<Flight> flights = GetMockFlight();
             DateOnly flightDate = DateOnly.Parse("2023/07/01");
 
             //act and assert
@@ -66,8 +65,8 @@ namespace HolidaySearchTest
         public void GetFlightHotelList_Should_Return_Null_For_Invalid_FlightAirportFrom()
         {
             //arrange
-            List<Hotel> hotels = GetFakeHotel();
-            List<Flight> flights = GetFakeFlight();
+            List<Hotel> hotels = GetMockHotel();
+            List<Flight> flights = GetMockFlight();
 
             DateOnly flightDate = DateOnly.Parse("2023/07/01");
 
@@ -82,8 +81,8 @@ namespace HolidaySearchTest
         public void GetFlightHotelList_Should_Return_Null_For_Invalid_FlightAirportTo()
         {
             //arrange
-            List<Hotel> hotels = GetFakeHotel();
-            List<Flight> flights = GetFakeFlight();
+            List<Hotel> hotels = GetMockHotel();
+            List<Flight> flights = GetMockFlight();
 
             DateOnly flightDate = DateOnly.Parse("2023/07/01");
 
@@ -98,8 +97,8 @@ namespace HolidaySearchTest
         public void GetFlightsHotelsForAnyAirport_Should_Return_Correct_Flight_And_Hotel_Id()
         {
             //arrange
-            List<Hotel> hotels = GetFakeHotel();
-            List<Flight> flights =GetFakeFlight();
+            List<Hotel> hotels = GetMockHotel();
+            List<Flight> flights =GetMockFlight();
             DateOnly flightDate = DateOnly.Parse("2022/11/10");
             int expectedFlightId = 7;
             int expectedHotelId = 6;
@@ -116,7 +115,7 @@ namespace HolidaySearchTest
         public void GetFlightsHotelsForAnyAirport_Should_Throw_Exception_When_Flight_Is_Null()
         {
             //arrange
-            List<Hotel> hotels = GetFakeHotel();
+            List<Hotel> hotels = GetMockHotel();
             List<Flight> flights = null;
             DateOnly flightDate = DateOnly.Parse("2022/11/10");
 
@@ -130,7 +129,7 @@ namespace HolidaySearchTest
         {
             //arrange
             List<Hotel> hotels = null;
-            List<Flight> flights = GetFakeFlight();
+            List<Flight> flights = GetMockFlight();
             DateOnly flightDate = DateOnly.Parse("2022/11/10");
 
             //assert
@@ -142,8 +141,8 @@ namespace HolidaySearchTest
         public void GetFlightsHotelsForAnyAirport_Should_Return_Null_For_Invalid_FlightAirportTo()
         {
             //arrange
-            List<Hotel> hotels = GetFakeHotel();
-            List<Flight> flights = GetFakeFlight();
+            List<Hotel> hotels = GetMockHotel();
+            List<Flight> flights = GetMockFlight();
 
             DateOnly flightDate = DateOnly.Parse("2022/11/10");
 
@@ -160,8 +159,8 @@ namespace HolidaySearchTest
         public void GetFlightsHotelsForAnyLondonAirport_Should_Return_Correct_Flight_And_Hotel_Id()
         {
             //arrange
-            List<Hotel> hotels = GetFakeHotel();
-            List<Flight> flights = GetFakeFlight();
+            List<Hotel> hotels = GetMockHotel();
+            List<Flight> flights = GetMockFlight();
             DateOnly flightDate = DateOnly.Parse("2023/06/15");
             int expectedFlightId = 6;
             int expectedHotelId = 5;
@@ -178,7 +177,7 @@ namespace HolidaySearchTest
         public void GetFlightsHotelsForAnyLondonAirport_Should_Throw_Exception_When_Flight_Is_Null()
         {
             //arrange
-            List<Hotel> hotels = GetFakeHotel();
+            List<Hotel> hotels = GetMockHotel();
             List<Flight> flights = null;
             DateOnly flightDate = DateOnly.Parse("2022/11/10");
 
@@ -192,7 +191,7 @@ namespace HolidaySearchTest
         {
             //arrange
             List<Hotel> hotels = null;
-            List<Flight> flights = GetFakeFlight();
+            List<Flight> flights = GetMockFlight();
             DateOnly flightDate = DateOnly.Parse("2023/06/15");
 
             //assert
@@ -204,8 +203,8 @@ namespace HolidaySearchTest
         public void GetFlightsHotelsForAnyLondonAirport_Should_Return_Null_For_Invalid_FlightAirportTo()
         {
             //arrange
-            List<Hotel> hotels = GetFakeHotel();
-            List<Flight> flights = GetFakeFlight();
+            List<Hotel> hotels = GetMockHotel();
+            List<Flight> flights = GetMockFlight();
 
             DateOnly flightDate = DateOnly.Parse("2023/06/15");
 
@@ -216,10 +215,7 @@ namespace HolidaySearchTest
             //assert
             holidayPackages.Count().Should().Be(0);
         }
-
-
-
-        private List<Hotel> GetFakeHotel()
+        private List<Hotel> GetMockHotel()
         {
             return new List<Hotel>
             {
@@ -249,11 +245,20 @@ namespace HolidaySearchTest
                     price_per_night = 75,
                     local_airports = new List<string> { "LPA" },
                     nights = 14
-                }
+                },
+                 new Hotel {
+
+                    id = 1,
+                    name = "Iberostar Grand Portals Nous",
+                    arrival_date = DateOnly.Parse("2022-11-05"),
+                    price_per_night = 100,
+                    local_airports = new List<string> { "TFS" },
+                    nights = 7
+                 }
             };
 
         }
-        private List<Flight> GetFakeFlight()
+        private List<Flight> GetMockFlight()
         {
             return new List<Flight>
             {
@@ -283,6 +288,15 @@ namespace HolidaySearchTest
                     to = "LPA",
                     price = 125,
                     departure_date = DateOnly.Parse("2022-11-10")
+                },
+                new Flight
+                {
+                    id = 3,
+                    airline = "Trans American Airlines",
+                    from = "MAN",
+                    to = "PMI",
+                    price = 170,
+                    departure_date =DateOnly.Parse("2023-06-15")
                 }
             };
         }

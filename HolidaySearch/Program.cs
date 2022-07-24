@@ -3,8 +3,8 @@ using HolidaySearch.JsonParser;
 using HolidaySearch.Model;
 using HolidaySearch.Search;
 
-string fileNameH = @"D:/Learning/OnTheBeachTechTask/OnTheBeach/HolidaySearch/Input/hotel.json";
-string fileNameF = @"D:/Learning/OnTheBeachTechTask/OnTheBeach/HolidaySearch/Input/flight.json";
+string fileNameH = "./Input/hotel.json";
+string fileNameF = "./Input/flight.json";
 IJsonFileParser jsonFileParser = new JsonFileParser();
 
 List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(fileNameH);

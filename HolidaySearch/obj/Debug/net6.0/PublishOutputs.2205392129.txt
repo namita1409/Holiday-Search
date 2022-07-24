@@ -1,0 +1,10 @@
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\outputdir\HolidaySearch.exe
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\outputdir\HolidaySearch.dll
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\outputdir\HolidaySearch.deps.json
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\outputdir\HolidaySearch.runtimeconfig.json
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\outputdir\HolidaySearch.pdb
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\outputdir\FluentAssertions.dll
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\outputdir\Newtonsoft.Json.dll
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\outputdir\System.Configuration.ConfigurationManager.dll
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\outputdir\System.Security.Cryptography.ProtectedData.dll
+D:\Learning\OnTheBeachTechTask\OnTheBeach\HolidaySearch\outputdir\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
