@@ -18,12 +18,11 @@ namespace HolidaySearch.Model
         public string toString()
         {
             return "Id: " + id + "\n"
-                + "airline: " + airline + "\n"
-                + "from: " + from + "\n"
-                + "to: " + to + "\n"
-                + "price: " + price + "\n"
-                + "departure_date: " + departure_date;
+                + "Airline: " + airline + "\n"
+                + "From: " + from + "\n"
+                + "To: " + to + "\n"
+                + "Price: " + price + "\n"
+                + "Departure_date: " + departure_date;
         }
-
     }
 }

@@ -3,10 +3,12 @@ using HolidaySearch.JsonParser;
 using HolidaySearch.Model;
 using HolidaySearch.Search;
 
+string hotelFileName = @"D:/Learning/OnTheBeachTechTask/OnTheBeach/HolidaySearch/Input/hotel.json";
+string flightFileName = @"D:/Learning/OnTheBeachTechTask/OnTheBeach/HolidaySearch/Input/flight.json";
+IJsonFileParser jsonFileParser = new JsonFileParser();
 
-IJsonFileReader jsonFileReader = new JsonFileReader();
-List<Hotel> hotels = jsonFileReader.HotelJsonReader();
-List<Flight> flights = jsonFileReader.FlightJsonReader();
+List<Hotel> hotels = jsonFileParser.GetHotelsFromJsonFile(hotelFileName);
+List<Flight> flights = jsonFileParser.GetFlightsFromJsonFile(flightFileName);
 
 
 IHolidaySearchService holidaySearchService = new HolidaySearchService();
@@ -17,7 +19,6 @@ DateOnly flightDate1 = DateOnly.Parse("2023/07/01");
 holidayPackages = holidaySearchService.GetFlightHotelList(flights, hotels, "MAN", "AGP", flightDate1, 7);
 Console.WriteLine("*****************************************");
 
-Console.WriteLine("totalProce"+ holidayPackages.First().totalPrice);
 Console.WriteLine(holidayPackages.First().flight.toString());
 Console.WriteLine("#########################################");
 Console.WriteLine(holidayPackages.First().hotel.toString());

@@ -1,0 +1,45 @@
+﻿using HolidaySearch.Model;
+using System.Text.Json;
+
+
+namespace HolidaySearch.JsonParser
+{
+    public class JsonFileParser : IJsonFileParser
+    {
+        public List<Hotel> GetHotelsFromJsonFile(string fileName)
+        {
+            List<Hotel> hotelList;
+         
+            using (StreamReader r = new StreamReader(fileName))
+            {
+                string jsonString = r.ReadToEnd();
+                hotelList = ParseHotelJsonString(jsonString);
+            }
+            return hotelList;
+        }
+        public List<Hotel> ParseHotelJsonString(string jsonString)
+        {
+            var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+            options.Converters.Add(new CustomDateOnlyConverter("yyyy-MM-dd"));
+            return JsonSerializer.Deserialize<List<Hotel>>(jsonString, options);
+        }
+        public List<Flight> GetFlightsFromJsonFile(string fileName)
+        {
+            List<Flight> flightList;       
+
+            using (StreamReader r = new StreamReader(fileName))
+            {
+                string jsonString = r.ReadToEnd();
+                flightList = ParseFlightJsonString(jsonString);
+                return flightList;
+            }
+        }
+        public  List<Flight> ParseFlightJsonString(string jsonString)
+        {
+            var options = new JsonSerializerOptions() { WriteIndented = true };
+            options.Converters.Add(new CustomDateOnlyConverter("yyyy-MM-dd"));
+            return JsonSerializer.Deserialize<List<Flight>>(jsonString, options);
+        }
+    }
+}
+
