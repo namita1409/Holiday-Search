@@ -45,7 +45,7 @@ The `flight.json` contains data required to book the flight:
 requests:
 
 
- 🏚The first search result should be the best value holiday we can provide, based on the customers requirements.
+ 🏚The first search result should be the best value holiday (best price) we can provide, based on the customers requirements.
  
  👉 Sample test cases to verify the success of work are listed below:
  
