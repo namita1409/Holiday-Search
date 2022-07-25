@@ -20,7 +20,10 @@ The `hotel.json` contains data required to book the hotel:
 
 ● price_per_night
 
+● local_airport
+
 ● nights
+
 
 The `flight.json` contains data required to book the flight:
 
